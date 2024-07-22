@@ -47,9 +47,11 @@ func postAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusCreated, newAlbum)
 }
 
+// idにマッチするIDを持つアルバムの場所を取得する
+// クライアントからパラメタが送られたら，レスポンスとしてアルバムを返す
 func getAlbumByID(c *gin.Context) {
 	id := c.Param("id")
-
+	//IDの値とマッチするパラメタを持つアルバムを探すためにリストのアルバムをループする
 	for _, a := range albums {
 		if a.ID == id {
 			c.IndentedJSON(http.StatusOK, a)
